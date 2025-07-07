@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dt6g6ikqb0jv8"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ma5b5"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(608, 557)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape2D_ma5b5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor"]
