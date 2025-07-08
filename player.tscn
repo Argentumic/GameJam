@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://6cecfsx70cfs"]
+[gd_scene load_steps=4 format=3 uid="uid://6cecfsx70cfs"]
 
 [ext_resource type="Texture2D" uid="uid://cal45yqtk62uw" path="res://liquid.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dde5o6ampra6m" path="res://Jump.gd" id="2_onrkg"]
@@ -18,9 +18,9 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis(\"Left\", \"Right\")
 	if direction:
-		velocity.x = direction * speed
+		velocity.x = move_toward(velocity.x, direction * speed, speed/6)
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.x = move_toward(velocity.x, 0, speed/3)
 
 	move_and_slide()
 
@@ -35,35 +35,27 @@ func _process(delta: float) -> void:
 		else:
 			state += 1
 	if state == 0:
-		get_node(\"Jump\").JUMP_VELOCITY_START = -50
-		get_node(\"Jump\").JUMP_VELOCITY_CONTINUOUS = -10
+		get_node(\"Jump\").JUMP_VELOCITY = -50
 		get_node(\"Jump\").gravity_coef = 1
 		get_node(\"Jump\").gravity_fall_coef = 2.5
 		speed = 75
 	if state == 1:
-		get_node(\"Jump\").JUMP_VELOCITY_START = -125
-		get_node(\"Jump\").JUMP_VELOCITY_CONTINUOUS = -40
+		get_node(\"Jump\").JUMP_VELOCITY = -300
 		get_node(\"Jump\").gravity_coef = 1
 		get_node(\"Jump\").gravity_fall_coef = 2
 		speed = 250
 	if state == 2:
-		get_node(\"Jump\").JUMP_VELOCITY_START = -100
-		get_node(\"Jump\").JUMP_VELOCITY_CONTINUOUS = -30
+		get_node(\"Jump\").JUMP_VELOCITY = -250
 		get_node(\"Jump\").gravity_coef = 0.5
 		get_node(\"Jump\").gravity_fall_coef = 1
 		speed = 150
 "
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
-radius = 7.0
-height = 14.0
-
 [node name="Player" type="CharacterBody2D"]
 script = SubResource("GDScript_4flbx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
-shape = SubResource("CapsuleShape2D_onrkg")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -7, 6, 1, 8, 8, -8, 8, -6, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
