@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://6cecfsx70cfs"]
+
+[ext_resource type="Texture2D" uid="uid://cal45yqtk62uw" path="res://player.png" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://dde5o6ampra6m" path="res://Jump.gd" id="2_onrkg"]
+
+[sub_resource type="GDScript" id="GDScript_4flbx"]
+resource_name = "movement"
+script/source = "extends CharacterBody2D
+
+
+@export var SPEED: float = 300.0
+
+
+func _physics_process(delta: float) -> void:
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction := Input.get_axis(\"Left\", \"Right\")
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+	move_and_slide()
+
+var  colors: Array = [Color(1,0,0), Color(0,1,0), Color(1,1,1)]
+var i: int = 2
+
+func _process(delta: float) -> void:
+	get_node(\"Sprite2D\").self_modulate = colors[i]
+	if Input.is_action_just_pressed(\"ShiftStates\") and i<3:
+		if i == 2:
+			i = 0
+		else:
+			i = i+1
+		
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
+radius = 8.0
+
+[node name="Player" type="CharacterBody2D"]
+script = SubResource("GDScript_4flbx")
+SPEED = 200.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_4flbx")
+
+[node name="Jump" type="Node2D" parent="."]
+script = ExtResource("2_onrkg")
