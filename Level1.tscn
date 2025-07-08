@@ -7,20 +7,30 @@
 size = Vector2(16, 16)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ma5b5"]
-distance = -2.5
+distance = -1.0
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Plat" type="StaticBody2D" parent="."]
-position = Vector2(51, 13.975)
+position = Vector2(54, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Plat"]
-position = Vector2(0, -17.235)
 shape = SubResource("RectangleShape2D_mc20k")
+one_way_collision = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Plat"]
 texture_filter = 1
-position = Vector2(0, -17.235)
+texture = ExtResource("1_kyxg0")
+
+[node name="Plat" type="StaticBody2D" parent="Plat"]
+position = Vector2(0, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plat/Plat"]
+shape = SubResource("RectangleShape2D_mc20k")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Plat/Plat"]
+texture_filter = 1
 texture = ExtResource("1_kyxg0")
 
 [node name="Floor" type="StaticBody2D" parent="."]
