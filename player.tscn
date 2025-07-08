@@ -51,7 +51,7 @@ func _process(delta: float) -> void:
 		speed = 150
 "
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = SubResource("GDScript_4flbx")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
