@@ -14,11 +14,11 @@ func _on_blow_area_body_exited(body: Node2D) -> void:
 
 func _physics_process(delta: float) -> void:
 	if get_node("../Player").state == 0:
-		fan_speed = -10
+		fan_speed = -75
 	elif get_node("../Player").state == 1:
-		fan_speed = -200
+		fan_speed = -500
 	else:
-		fan_speed = -149
+		fan_speed = -299
 		
 	if is_moved:
 		get_node("../Player").position.x += fan_speed*delta

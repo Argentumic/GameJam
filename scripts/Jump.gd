@@ -5,6 +5,8 @@ extends Node
 @export var gravity_fall_coef: float = 2.0
 @export var jump_cut_coef: float = 0.5
 
+var is_ascending: bool = false
+
 const COYOTE_TIMER_MAX: int = 6
 var coyote_timer: int = 0
 
@@ -18,8 +20,10 @@ func _physics_process(delta: float) -> void:
 	#GRAVITY STARTS
 	if get_parent().velocity.y<0 and !get_parent().is_on_floor():
 		get_parent().velocity += get_parent().get_gravity() * delta * gravity_coef
+		is_ascending = true
 	elif get_parent().velocity.y>=0 and !get_parent().is_on_floor():
 		get_parent().velocity += get_parent().get_gravity() * delta * gravity_coef * gravity_fall_coef
+		is_ascending = false
 	#GRAVITY ENDS
 	#COYOTE TIME STARTS
 	
@@ -28,7 +32,7 @@ func _physics_process(delta: float) -> void:
 		if !Input.is_action_pressed("Jump"):
 			can_jump = true
 		
-	if !get_parent().is_on_floor() and coyote_timer>0 and !Input.is_action_pressed("Jump"):
+	if !get_parent().is_on_floor() and coyote_timer>0 and !Input.is_action_pressed("Jump") and get_parent().velocity.y >= 0:
 		can_jump = true
 		coyote_timer -= delta
 	elif !get_parent().is_on_floor() and coyote_timer==0:

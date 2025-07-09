@@ -1,15 +1,16 @@
 [gd_scene load_steps=5 format=3 uid="uid://bibd37wcy2ivs"]
 
-[ext_resource type="Script" uid="uid://dgeicvch6otp7" path="res://fan.gd" id="1_7l2ec"]
+[ext_resource type="Script" uid="uid://dgeicvch6otp7" path="res://scripts/fan.gd" id="1_7l2ec"]
 [ext_resource type="Texture2D" uid="uid://mauin3fke3j8" path="res://fan.png" id="1_8vgsl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7l2ec"]
 size = Vector2(20, 31)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ml7w"]
-size = Vector2(128, 32)
+size = Vector2(483.5, 32)
 
 [node name="Fan" type="Node2D"]
+scale = Vector2(4, 4)
 script = ExtResource("1_7l2ec")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -28,7 +29,7 @@ gravity_direction = Vector2(-1, 1)
 gravity = 4096.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BlowArea"]
-position = Vector2(-74, 0)
+position = Vector2(-251.75, 0)
 shape = SubResource("RectangleShape2D_3ml7w")
 debug_color = Color(0.832976, 0.390609, 7.70092e-07, 0.42)
 

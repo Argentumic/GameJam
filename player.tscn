@@ -1,7 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://6cecfsx70cfs"]
+[gd_scene load_steps=16 format=3 uid="uid://6cecfsx70cfs"]
 
-[ext_resource type="Texture2D" uid="uid://cal45yqtk62uw" path="res://liquid.png" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://dde5o6ampra6m" path="res://Jump.gd" id="2_onrkg"]
+[ext_resource type="Texture2D" uid="uid://brpx2pabua53d" path="res://Solid Assets/Solid_Idle1.png" id="1_hqtel"]
+[ext_resource type="Texture2D" uid="uid://c17b5nck6syua" path="res://Solid Assets/Solid_Land.png" id="1_n7ghd"]
+[ext_resource type="Script" uid="uid://dde5o6ampra6m" path="res://scripts/Jump.gd" id="2_onrkg"]
+[ext_resource type="Texture2D" uid="uid://hrkh1mlmr5r0" path="res://Solid Assets/Solid_Idle2.png" id="2_sweqy"]
+[ext_resource type="Texture2D" uid="uid://cqa3t7rcoyeow" path="res://Solid Assets/Solid_Idle3.png" id="3_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://duo5u3deigjm4" path="res://Solid Assets/Solid_Jump.png" id="5_nvl01"]
+[ext_resource type="Texture2D" uid="uid://dat6ii4a35vs7" path="res://Solid Assets/Solid_Left1.png" id="6_ivps1"]
+[ext_resource type="Texture2D" uid="uid://bvvbpuaakhmaq" path="res://Solid Assets/Solid_Left2.png" id="7_urp6f"]
+[ext_resource type="Texture2D" uid="uid://dqwd332vf5574" path="res://Solid Assets/Solid_Right1.png" id="8_bwjto"]
+[ext_resource type="Texture2D" uid="uid://cnnaeyc82s12t" path="res://Solid Assets/Solid_Right2.png" id="9_606se"]
+[ext_resource type="Script" uid="uid://bgsmdxuntuo0p" path="res://scripts/animation_handler.gd" id="11_nvl01"]
 
 [sub_resource type="GDScript" id="GDScript_4flbx"]
 resource_name = "movement"
@@ -28,38 +37,164 @@ func _physics_process(delta: float) -> void:
 var state: int = 1
 
 func _process(delta: float) -> void:
-	get_node(\"Sprite2D\").texture = state_sprites[state]
 	if Input.is_action_just_pressed(\"ShiftStates\") and state<3:
 		if state == 2:
 			state = 0
 		else:
 			state += 1
 	if state == 0:
-		get_node(\"Jump\").JUMP_VELOCITY = -50
+		get_node(\"AnimationHandler/Solid\").visible = true
+		get_node(\"AnimationHandler/Liquid\").visible = false
+		get_node(\"AnimationHandler/Gas\").visible = false
+		
+		get_node(\"Jump\").JUMP_VELOCITY = -200
 		get_node(\"Jump\").gravity_coef = 1
 		get_node(\"Jump\").gravity_fall_coef = 2.5
-		speed = 75
+		speed = 200
 	if state == 1:
-		get_node(\"Jump\").JUMP_VELOCITY = -300
+		get_node(\"AnimationHandler/Solid\").visible = false
+		get_node(\"AnimationHandler/Liquid\").visible = true
+		get_node(\"AnimationHandler/Gas\").visible = false
+		
+		get_node(\"Jump\").JUMP_VELOCITY = -600
 		get_node(\"Jump\").gravity_coef = 1
 		get_node(\"Jump\").gravity_fall_coef = 2
-		speed = 250
+		speed = 600
 	if state == 2:
-		get_node(\"Jump\").JUMP_VELOCITY = -250
+		get_node(\"AnimationHandler/Solid\").visible = false
+		get_node(\"AnimationHandler/Liquid\").visible = false
+		get_node(\"AnimationHandler/Gas\").visible = true
+		
+		get_node(\"Jump\").JUMP_VELOCITY = -515
 		get_node(\"Jump\").gravity_coef = 0.5
 		get_node(\"Jump\").gravity_fall_coef = 1
-		speed = 150
+		speed = 300
+
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area.owner.is_in_group(\"Death\"):
+		get_tree().reload_current_scene()
+
+
+func _on_destroyable_checker_area_entered(area: Area2D) -> void:
+	print(velocity.y)
+	if area.is_in_group(\"Destroyable\") and state == 0 and velocity.y > 1000:
+		area.get_parent().queue_free()
 "
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_1jxqw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_n7ghd")
+}],
+"loop": true,
+"name": &"Fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hqtel")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_sweqy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2hs0m")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_nvl01")
+}],
+"loop": false,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_n7ghd")
+}],
+"loop": false,
+"name": &"Land",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ivps1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_urp6f")
+}],
+"loop": true,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_bwjto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_606se")
+}],
+"loop": true,
+"name": &"Right",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nvl01"]
+size = Vector2(106, 116)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ivps1"]
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+scale = Vector2(0.5, 0.5)
 script = SubResource("GDScript_4flbx")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(1.50001, 0.812505)
+scale = Vector2(8.71094, 9.375)
 polygon = PackedVector2Array(0, -7, 6, 1, 8, 8, -8, 8, -6, 1)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
-texture = ExtResource("1_4flbx")
 
 [node name="Jump" type="Node2D" parent="."]
 script = ExtResource("2_onrkg")
+
+[node name="AnimationHandler" type="Node2D" parent="."]
+script = ExtResource("11_nvl01")
+
+[node name="Solid" type="AnimatedSprite2D" parent="AnimationHandler"]
+sprite_frames = SubResource("SpriteFrames_1jxqw")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="Liquid" type="AnimatedSprite2D" parent="AnimationHandler"]
+visible = false
+self_modulate = Color(1, 0, 0, 1)
+sprite_frames = SubResource("SpriteFrames_1jxqw")
+animation = &"Jump"
+autoplay = "Idle"
+
+[node name="Gas" type="AnimatedSprite2D" parent="AnimationHandler"]
+visible = false
+self_modulate = Color(0, 1, 0, 1)
+sprite_frames = SubResource("SpriteFrames_1jxqw")
+animation = &"Land"
+autoplay = "Idle"
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-1, 2)
+shape = SubResource("RectangleShape2D_nvl01")
+
+[node name="DestroyableChecker" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyableChecker"]
+position = Vector2(0, 70)
+shape = SubResource("RectangleShape2D_ivps1")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="DestroyableChecker" to="." method="_on_destroyable_checker_area_entered"]

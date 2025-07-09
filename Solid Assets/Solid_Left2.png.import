@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cal45yqtk62uw"
-path="res://.godot/imported/liquid.png-79115ee3174e3d9d8f6d47ac99eb5a33.ctex"
+uid="uid://bvvbpuaakhmaq"
+path="res://.godot/imported/Solid_Left2.png-cfbb8be110d51d444c056f2da1429799.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://liquid.png"
-dest_files=["res://.godot/imported/liquid.png-79115ee3174e3d9d8f6d47ac99eb5a33.ctex"]
+source_file="res://Solid Assets/Solid_Left2.png"
+dest_files=["res://.godot/imported/Solid_Left2.png-cfbb8be110d51d444c056f2da1429799.ctex"]
 
 [params]
 
