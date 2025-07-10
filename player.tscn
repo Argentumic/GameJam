@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://6cecfsx70cfs"]
+[gd_scene load_steps=17 format=3 uid="uid://6cecfsx70cfs"]
 
 [ext_resource type="Texture2D" uid="uid://brpx2pabua53d" path="res://Solid Assets/Solid_Idle1.png" id="1_hqtel"]
 [ext_resource type="Texture2D" uid="uid://c17b5nck6syua" path="res://Solid Assets/Solid_Land.png" id="1_n7ghd"]
@@ -60,7 +60,7 @@ func _process(delta: float) -> void:
 		get_node(\"AnimationHandler/Liquid\").visible = true
 		get_node(\"AnimationHandler/Gas\").visible = false
 		
-		get_node(\"Jump\").JUMP_VELOCITY = -600
+		get_node(\"Jump\").JUMP_VELOCITY = -635
 		get_node(\"Jump\").gravity_coef = 1
 		get_node(\"Jump\").gravity_fall_coef = 2
 		speed = 600
@@ -69,7 +69,7 @@ func _process(delta: float) -> void:
 		get_node(\"AnimationHandler/Liquid\").visible = false
 		get_node(\"AnimationHandler/Gas\").visible = true
 		
-		get_node(\"Jump\").JUMP_VELOCITY = -515
+		get_node(\"Jump\").JUMP_VELOCITY = -520
 		get_node(\"Jump\").gravity_coef = 0.5
 		get_node(\"Jump\").gravity_fall_coef = 1
 		speed = 300
@@ -81,10 +81,13 @@ func _process(delta: float) -> void:
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.owner.is_in_group(\"Spike\") or area.is_in_group(\"Spike\"):
 		is_in_spikes = true
+	if area.owner.is_in_group(\"Death\") or area.is_in_group(\"Death\"):
+		get_tree().reload_current_scene()
 
 func _on_hitbox_area_exited(area: Area2D) -> void:
-	if area.owner.is_in_group(\"Spike\") or area.is_in_group(\"Spike\"):
-		is_in_spikes = false
+	if area != null and area.owner != null:
+		if area.owner.is_in_group(\"Spike\") or area.is_in_group(\"Spike\"):
+			is_in_spikes = false
 
 func _on_destroyable_checker_area_entered(area: Area2D) -> void:
 	print(velocity.y)
@@ -160,12 +163,17 @@ size = Vector2(106, 116)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivps1"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nvl01"]
+bg_color = Color(0.15, 0.15, 0.15, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 scale = Vector2(0.5, 0.5)
 script = SubResource("GDScript_4flbx")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(1.50001, 0.812505)
+position = Vector2(-2, 4)
 scale = Vector2(8.71094, 9.375)
 polygon = PackedVector2Array(0, -7, 6, 1, 8, 8, -8, 8, -6, 1)
 
@@ -205,6 +213,75 @@ shape = SubResource("RectangleShape2D_nvl01")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyableChecker"]
 position = Vector2(0, 70)
 shape = SubResource("RectangleShape2D_ivps1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(2, 2)
+zoom = Vector2(0.75, 0.75)
+
+[node name="UI" type="Control" parent="."]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_left = -2560.0
+offset_top = -1440.0
+offset_right = 2560.0
+offset_bottom = 1440.0
+
+[node name="Panel" type="Panel" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -376.5
+offset_top = -242.0
+offset_right = 376.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_nvl01")
+
+[node name="Previous State" type="TextureRect" parent="UI/Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 36.5
+offset_top = -100.0
+offset_right = 236.5
+offset_bottom = 100.0
+grow_vertical = 2
+texture = ExtResource("1_hqtel")
+
+[node name="CurrentState" type="TextureRect" parent="UI/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.5
+offset_top = -132.5
+offset_right = 132.5
+offset_bottom = 132.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_hqtel")
+
+[node name="Previous State2" type="TextureRect" parent="UI/Panel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -234.0
+offset_top = -100.0
+offset_right = -34.0
+offset_bottom = 100.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("1_hqtel")
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
