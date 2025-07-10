@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="State Shifter"
-run/main_scene="uid://dt6g6ikqb0jv8"
+run/main_scene="uid://dfjx5wxg3hon"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+AudioPlayer="*res://AudioPlayer.tscn"
 
 [display]
 

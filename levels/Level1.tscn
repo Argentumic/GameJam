@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://dt6g6ikqb0jv8"]
+
+[ext_resource type="Script" uid="uid://cmsjsuttrhrmv" path="res://scripts/level_1.gd" id="1_cr8f5"]
+[ext_resource type="PackedScene" uid="uid://6cecfsx70cfs" path="res://player.tscn" id="2_gqfrg"]
+[ext_resource type="PackedScene" uid="uid://cp07ycajk8c7n" path="res://spike.tscn" id="3_dkril"]
+[ext_resource type="PackedScene" uid="uid://bibd37wcy2ivs" path="res://fan.tscn" id="4_lbu4x"]
+[ext_resource type="PackedScene" uid="uid://dh6g2lmi7hh7u" path="res://destroyable_platform.tscn" id="5_vcl05"]
+[ext_resource type="PackedScene" uid="uid://cgbd7jkvumw2r" path="res://mesh.tscn" id="6_nn0v1"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_dwyiq"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_cr8f5")
+
+[node name="Player" parent="." instance=ExtResource("2_gqfrg")]
+position = Vector2(-108, 317)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+scale = Vector2(2, 2)
+zoom = Vector2(0.5, 0.5)
+
+[node name="Spike" parent="." instance=ExtResource("3_dkril")]
+position = Vector2(368, 304)
+
+[node name="Fan" parent="." instance=ExtResource("4_lbu4x")]
+position = Vector2(891, 11)
+
+[node name="simple floor" type="StaticBody2D" parent="."]
+position = Vector2(7, 495)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="simple floor"]
+shape = SubResource("WorldBoundaryShape2D_dwyiq")
+
+[node name="destroyable platform" parent="." instance=ExtResource("5_vcl05")]
+position = Vector2(170, 381)
+
+[node name="destroyable platform2" parent="." instance=ExtResource("5_vcl05")]
+position = Vector2(170, 210)
+
+[node name="destroyable platform3" parent="." instance=ExtResource("5_vcl05")]
+position = Vector2(164, -1)
+
+[node name="destroyable platform4" parent="." instance=ExtResource("5_vcl05")]
+position = Vector2(-274, -244)
+
+[node name="Mesh" parent="." instance=ExtResource("6_nn0v1")]
+position = Vector2(901, -16)
