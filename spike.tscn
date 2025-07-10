@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uu0u4"]
 size = Vector2(175, 25)
 
-[node name="Spike" type="Node2D" groups=["Death"]]
+[node name="Spike" type="Node2D" groups=["Spike"]]
 scale = Vector2(0.5, 0.5)
 
 [node name="Area2D" type="Area2D" parent="."]

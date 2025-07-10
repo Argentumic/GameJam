@@ -44,4 +44,4 @@ position = Vector2(164, -1)
 position = Vector2(-274, -244)
 
 [node name="Mesh" parent="." instance=ExtResource("6_nn0v1")]
-position = Vector2(901, -16)
+position = Vector2(919, 347)
