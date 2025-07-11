@@ -10,7 +10,7 @@ size = Vector2(127, 127)
 size = Vector2(114, 120.125)
 
 [node name="Mesh" type="StaticBody2D"]
-scale = Vector2(3, 8)
+scale = Vector2(3, 3)
 script = ExtResource("1_11kbe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

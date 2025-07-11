@@ -10,10 +10,8 @@ var is_ascending: bool = false
 const COYOTE_TIMER_MAX: int = 6
 var coyote_timer: int = 0
 
-const BUFFER_TIMER_MAX: int = 6
+const BUFFER_TIMER_MAX: int = 15
 var buffer_timer: int = 0
-
-var can_jump: bool = false
 
 func _physics_process(delta: float) -> void:
 	
@@ -29,26 +27,18 @@ func _physics_process(delta: float) -> void:
 	
 	if get_parent().is_on_floor():
 		coyote_timer = COYOTE_TIMER_MAX
-		if !Input.is_action_pressed("Jump"):
-			can_jump = true
-		
-	if !get_parent().is_on_floor() and coyote_timer>0 and !Input.is_action_pressed("Jump") and get_parent().velocity.y >= 0:
-		can_jump = true
+	else:
 		coyote_timer -= delta
-	elif !get_parent().is_on_floor() and coyote_timer==0:
-		can_jump = false
 	
 	#COYOTE TIME ENDS
 	#MAIN JUMP PART STARTS
 	
-	if can_jump and Input.is_action_just_pressed("Jump"):
+	if (get_parent().is_on_floor() or coyote_timer > 0) and Input.is_action_just_pressed("Jump"):
 		get_parent().velocity.y = JUMP_VELOCITY
 	
 	if Input.is_action_just_released("Jump") and !get_parent().is_on_floor():
 		get_parent().velocity.y *= jump_cut_coef
 			
-	if Input.is_action_just_released("Jump"):
-		can_jump = false
 	#MAIN JUMP PART ENDS
 	#BUFFER TIME PART BELOW
 		
@@ -60,5 +50,4 @@ func _physics_process(delta: float) -> void:
 	
 	if get_parent().is_on_floor() and buffer_timer > 0:
 		get_parent().velocity.y = JUMP_VELOCITY
-		can_jump = true
 		buffer_timer = 0

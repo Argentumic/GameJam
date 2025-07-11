@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://5f4x40668lp6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ettg"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6xkr4"]
+bg_color = Color(0.697, 0.78105, 0.82, 0.662745)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8wrl"]
+bg_color = Color(0.596078, 0.666667, 0.698039, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s01ir"]
+bg_color = Color(0.7225, 0.809625, 0.85, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w3h5g"]
+bg_color = Color(0.595, 0.66675, 0.7, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_maniu"]
+bg_color = Color(0.854902, 0.952941, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="ExitButton" type="Button"]
+theme_override_colors/font_disabled_color = Color(0.572549, 0.858824, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.399, 0.599667, 0.7, 1)
+theme_override_colors/font_hover_color = Color(0.4845, 0.728167, 0.85, 1)
+theme_override_colors/font_outline_color = Color(0.572549, 0.858824, 1, 1)
+theme_override_colors/font_color = Color(0.572549, 0.858824, 1, 1)
+theme_override_colors/font_focus_color = Color(0.572549, 0.858824, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.399, 0.599667, 0.7, 1)
+theme_override_font_sizes/font_size = 72
+theme_override_styles/focus = SubResource("StyleBoxFlat_0ettg")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_6xkr4")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_b8wrl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_s01ir")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_w3h5g")
+theme_override_styles/normal = SubResource("StyleBoxFlat_maniu")
+keep_pressed_outside = true
+text = "Exit"

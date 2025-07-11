@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://6cecfsx70cfs"]
+[gd_scene load_steps=33 format=3 uid="uid://6cecfsx70cfs"]
 
 [ext_resource type="Texture2D" uid="uid://brpx2pabua53d" path="res://Solid Assets/Solid_Idle1.png" id="1_hqtel"]
 [ext_resource type="Texture2D" uid="uid://c17b5nck6syua" path="res://Solid Assets/Solid_Land.png" id="1_n7ghd"]
@@ -11,6 +11,20 @@
 [ext_resource type="Texture2D" uid="uid://dqwd332vf5574" path="res://Solid Assets/Solid_Right1.png" id="8_bwjto"]
 [ext_resource type="Texture2D" uid="uid://cnnaeyc82s12t" path="res://Solid Assets/Solid_Right2.png" id="9_606se"]
 [ext_resource type="Script" uid="uid://bgsmdxuntuo0p" path="res://scripts/animation_handler.gd" id="11_nvl01"]
+[ext_resource type="Texture2D" uid="uid://fm42kqaeutat" path="res://Liquid Assets/Liquid_Land.png" id="12_pbfsw"]
+[ext_resource type="Texture2D" uid="uid://dvwj1t20ajjii" path="res://Liquid Assets/Liquid_Idle1.png" id="13_5tmop"]
+[ext_resource type="Texture2D" uid="uid://c21w7q6bf2qo5" path="res://Liquid Assets/Liquid_Idle2.png" id="14_7ahtn"]
+[ext_resource type="Texture2D" uid="uid://qbu16rp62fcp" path="res://Liquid Assets/Liquid_Idle3.png" id="15_7lmhl"]
+[ext_resource type="Texture2D" uid="uid://dqdbx4m0paf4x" path="res://Liquid Assets/Liquid_Jump.png" id="16_dx0e4"]
+[ext_resource type="Texture2D" uid="uid://cjevqbskomo2g" path="res://Liquid Assets/Liquid_Left1.png" id="17_jm5j8"]
+[ext_resource type="Texture2D" uid="uid://lmbf2nt06nkl" path="res://Liquid Assets/Liquid_Left2.png" id="18_7hik5"]
+[ext_resource type="Texture2D" uid="uid://c40i5h7f28uls" path="res://Liquid Assets/Liquid_Right1.png" id="19_qtqh7"]
+[ext_resource type="Texture2D" uid="uid://bvu0ix8qswa5m" path="res://Liquid Assets/Liquid_Right2.png" id="20_2wuci"]
+[ext_resource type="Script" uid="uid://d355ex3tpnagb" path="res://scripts/state_indicator.gd" id="21_5tmop"]
+[ext_resource type="PackedScene" uid="uid://di68s2ubfqxmc" path="res://UI/volume.tscn" id="22_7ahtn"]
+[ext_resource type="Script" uid="uid://cq1t07diasf73" path="res://scripts/pause.gd" id="22_jm5j8"]
+[ext_resource type="PackedScene" uid="uid://5f4x40668lp6" path="res://UI/exit_button.tscn" id="23_dx0e4"]
+[ext_resource type="PackedScene" uid="uid://c7yx0a5hrnp3h" path="res://UI/play_button.tscn" id="24_jm5j8"]
 
 [sub_resource type="GDScript" id="GDScript_4flbx"]
 resource_name = "movement"
@@ -33,7 +47,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-var state: int = 1
+@export var state: int = 1
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed(\"ShiftStatesUp\") and state<3:
@@ -69,7 +83,7 @@ func _process(delta: float) -> void:
 		get_node(\"AnimationHandler/Liquid\").visible = false
 		get_node(\"AnimationHandler/Gas\").visible = true
 		
-		get_node(\"Jump\").JUMP_VELOCITY = -520
+		get_node(\"Jump\").JUMP_VELOCITY = -550
 		get_node(\"Jump\").gravity_coef = 0.5
 		get_node(\"Jump\").gravity_fall_coef = 1
 		speed = 300
@@ -129,14 +143,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_n7ghd")
-}],
-"loop": false,
-"name": &"Land",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": ExtResource("6_ivps1")
 }, {
 "duration": 1.0,
@@ -158,6 +164,61 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_iruf7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_pbfsw")
+}],
+"loop": true,
+"name": &"Fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_5tmop")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_7ahtn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_7lmhl")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_dx0e4")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_jm5j8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_7hik5")
+}],
+"loop": true,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_qtqh7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_2wuci")
+}],
+"loop": true,
+"name": &"Right",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nvl01"]
 size = Vector2(106, 116)
 
@@ -167,6 +228,9 @@ size = Vector2(106, 116)
 bg_color = Color(0.15, 0.15, 0.15, 1)
 corner_radius_top_left = 50
 corner_radius_top_right = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ahtn"]
+bg_color = Color(0, 0, 0, 0.509804)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 scale = Vector2(0.5, 0.5)
@@ -185,21 +249,20 @@ script = ExtResource("11_nvl01")
 
 [node name="Solid" type="AnimatedSprite2D" parent="AnimationHandler"]
 sprite_frames = SubResource("SpriteFrames_1jxqw")
-animation = &"Idle"
+animation = &"Fall"
 autoplay = "Idle"
 
 [node name="Liquid" type="AnimatedSprite2D" parent="AnimationHandler"]
 visible = false
-self_modulate = Color(1, 0, 0, 1)
-sprite_frames = SubResource("SpriteFrames_1jxqw")
-animation = &"Jump"
+sprite_frames = SubResource("SpriteFrames_iruf7")
+animation = &"Fall"
 autoplay = "Idle"
 
 [node name="Gas" type="AnimatedSprite2D" parent="AnimationHandler"]
 visible = false
 self_modulate = Color(0, 1, 0, 1)
 sprite_frames = SubResource("SpriteFrames_1jxqw")
-animation = &"Land"
+animation = &"Fall"
 autoplay = "Idle"
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -218,7 +281,7 @@ shape = SubResource("RectangleShape2D_ivps1")
 scale = Vector2(2, 2)
 zoom = Vector2(0.75, 0.75)
 
-[node name="UI" type="Control" parent="."]
+[node name="State Indicator" type="Control" parent="."]
 z_index = 10
 layout_mode = 3
 anchors_preset = 0
@@ -226,8 +289,9 @@ offset_left = -2560.0
 offset_top = -1440.0
 offset_right = 2560.0
 offset_bottom = 1440.0
+script = ExtResource("21_5tmop")
 
-[node name="Panel" type="Panel" parent="UI"]
+[node name="Panel" type="Panel" parent="State Indicator"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -241,7 +305,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_nvl01")
 
-[node name="Previous State" type="TextureRect" parent="UI/Panel"]
+[node name="PreviousState" type="TextureRect" parent="State Indicator/Panel"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -253,7 +317,7 @@ offset_bottom = 100.0
 grow_vertical = 2
 texture = ExtResource("1_hqtel")
 
-[node name="CurrentState" type="TextureRect" parent="UI/Panel"]
+[node name="CurrentState" type="TextureRect" parent="State Indicator/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -268,7 +332,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_hqtel")
 
-[node name="Previous State2" type="TextureRect" parent="UI/Panel"]
+[node name="FutureState" type="TextureRect" parent="State Indicator/Panel"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -283,6 +347,59 @@ grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("1_hqtel")
 
+[node name="Pause" type="Panel" parent="State Indicator"]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7ahtn")
+script = ExtResource("22_jm5j8")
+
+[node name="VBoxContainer2" parent="State Indicator/Pause" instance=ExtResource("22_7ahtn")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -199.5
+offset_top = -111.0
+offset_right = 199.5
+offset_bottom = 111.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+pivot_offset = Vector2(-224, 112.5)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="State Indicator/Pause"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -211.0
+offset_top = -109.0
+offset_right = 189.0
+offset_bottom = 109.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+pivot_offset = Vector2(589.48, 109)
+
+[node name="PlayButton" parent="State Indicator/Pause/VBoxContainer" instance=ExtResource("24_jm5j8")]
+layout_mode = 2
+text = "Continue"
+
+[node name="ExitButton" parent="State Indicator/Pause/VBoxContainer" instance=ExtResource("23_dx0e4")]
+layout_mode = 2
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
 [connection signal="area_entered" from="DestroyableChecker" to="." method="_on_destroyable_checker_area_entered"]
+[connection signal="pressed" from="State Indicator/Pause/VBoxContainer/PlayButton" to="State Indicator/Pause" method="_on_play_button_pressed"]
+[connection signal="pressed" from="State Indicator/Pause/VBoxContainer/ExitButton" to="State Indicator/Pause" method="_on_exit_button_pressed"]

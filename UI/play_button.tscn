@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7yx0a5hrnp3h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ettg"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_duh7t"]
+bg_color = Color(0.35, 0.35, 0.7, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ymyu"]
+bg_color = Color(0.296, 0.296, 0.8, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7rktv"]
+bg_color = Color(0.333, 0.333, 0.9, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ye4h"]
+bg_color = Color(0.296, 0.296, 0.8, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nwbki"]
+bg_color = Color(0.372549, 0.372549, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[node name="PlayButton" type="Button"]
+theme_override_colors/font_hover_pressed_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_colors/font_hover_color = Color(0.86, 0.86, 0.86, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 72
+theme_override_styles/focus = SubResource("StyleBoxFlat_0ettg")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_duh7t")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_6ymyu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7rktv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3ye4h")
+theme_override_styles/normal = SubResource("StyleBoxFlat_nwbki")
+keep_pressed_outside = true
+text = "Play"

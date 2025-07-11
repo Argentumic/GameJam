@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://di68s2ubfqxmc"]
+
+[ext_resource type="Script" uid="uid://72id0a2b3q7t" path="res://scripts/VolumeSlider.gd" id="1_rk3jm"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_spmat"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_0ettg"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_duh7t"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_spmat"]
+thickness = 24
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_0ettg"]
+color = Color(1, 1, 1, 1)
+thickness = 24
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_duh7t"]
+color = Color(1, 1, 1, 1)
+thickness = 24
+
+[node name="VBoxContainer2" type="VBoxContainer"]
+offset_left = 447.0
+offset_top = 818.0
+offset_right = 846.0
+offset_bottom = 1040.0
+grow_vertical = 0
+theme_override_constants/separation = 64
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Music"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_icons/grabber = SubResource("CanvasTexture_spmat")
+theme_override_icons/grabber_highlight = SubResource("CanvasTexture_0ettg")
+theme_override_icons/grabber_disabled = SubResource("CanvasTexture_duh7t")
+theme_override_styles/slider = SubResource("StyleBoxLine_spmat")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_0ettg")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_duh7t")
+max_value = 1.0
+step = 0.01
+value = 0.5
+script = ExtResource("1_rk3jm")
+bus_name = "Music"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Sound Effects"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_icons/grabber = SubResource("CanvasTexture_spmat")
+theme_override_icons/grabber_highlight = SubResource("CanvasTexture_0ettg")
+theme_override_icons/grabber_disabled = SubResource("CanvasTexture_duh7t")
+theme_override_styles/slider = SubResource("StyleBoxLine_spmat")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_0ettg")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_duh7t")
+max_value = 1.0
+step = 0.01
+value = 0.5
+script = ExtResource("1_rk3jm")
+bus_name = "SFX"
