@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://6cecfsx70cfs"]
+[gd_scene load_steps=48 format=3 uid="uid://6cecfsx70cfs"]
 
 [ext_resource type="Texture2D" uid="uid://brpx2pabua53d" path="res://Solid Assets/Solid_Idle1.png" id="1_hqtel"]
 [ext_resource type="Texture2D" uid="uid://c17b5nck6syua" path="res://Solid Assets/Solid_Land.png" id="1_n7ghd"]
@@ -21,10 +21,19 @@
 [ext_resource type="Texture2D" uid="uid://c40i5h7f28uls" path="res://Liquid Assets/Liquid_Right1.png" id="19_qtqh7"]
 [ext_resource type="Texture2D" uid="uid://bvu0ix8qswa5m" path="res://Liquid Assets/Liquid_Right2.png" id="20_2wuci"]
 [ext_resource type="Script" uid="uid://d355ex3tpnagb" path="res://scripts/state_indicator.gd" id="21_5tmop"]
+[ext_resource type="Texture2D" uid="uid://dnp17kiknj7jg" path="res://Gas Assets/Gas_Land.png" id="21_tkwlq"]
 [ext_resource type="PackedScene" uid="uid://di68s2ubfqxmc" path="res://UI/volume.tscn" id="22_7ahtn"]
+[ext_resource type="Texture2D" uid="uid://bi0vgki3a6y2j" path="res://Gas Assets/Gas_Idle1.png" id="22_hl5qd"]
 [ext_resource type="Script" uid="uid://cq1t07diasf73" path="res://scripts/pause.gd" id="22_jm5j8"]
 [ext_resource type="PackedScene" uid="uid://5f4x40668lp6" path="res://UI/exit_button.tscn" id="23_dx0e4"]
+[ext_resource type="Texture2D" uid="uid://c1dotcuvea2o7" path="res://Gas Assets/Gas_Idle2.png" id="23_ek41f"]
 [ext_resource type="PackedScene" uid="uid://c7yx0a5hrnp3h" path="res://UI/play_button.tscn" id="24_jm5j8"]
+[ext_resource type="Texture2D" uid="uid://dxkbib3l4oc5n" path="res://Gas Assets/Gas_Idle3.png" id="24_khis8"]
+[ext_resource type="Texture2D" uid="uid://djuro8jhy3o3o" path="res://Gas Assets/Gas_Jump.png" id="25_b88wv"]
+[ext_resource type="Texture2D" uid="uid://dvpnouoe0ua1r" path="res://Gas Assets/Gas_Left1.png" id="26_pgbbb"]
+[ext_resource type="Texture2D" uid="uid://qxd7xdif5r7q" path="res://Gas Assets/Gas_Left2.png" id="27_331ug"]
+[ext_resource type="Texture2D" uid="uid://bgi2wcheikssv" path="res://Gas Assets/Gas_Right1.png" id="28_ny14h"]
+[ext_resource type="Texture2D" uid="uid://bibwmygf621sb" path="res://Gas Assets/Gas_Right2.png" id="29_ibah8"]
 
 [sub_resource type="GDScript" id="GDScript_4flbx"]
 resource_name = "movement"
@@ -33,6 +42,10 @@ script/source = "extends CharacterBody2D
 
 @export var speed: float = 250.0
 var is_in_spikes: bool = false
+
+func _enter_tree() -> void:
+	$\"State Indicator/Transition\".set_position(Vector2(0,0))
+	$\"State Indicator/AnimationPlayer\".play(\"Death_End\")
 
 func _physics_process(delta: float) -> void:
 
@@ -89,14 +102,14 @@ func _process(delta: float) -> void:
 		speed = 300
 		
 	if is_in_spikes and state == 0:
-		get_tree().reload_current_scene()
+		$\"State Indicator/AnimationPlayer\".play(\"Death_Start\")
 
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.owner.is_in_group(\"Spike\") or area.is_in_group(\"Spike\"):
 		is_in_spikes = true
 	if area.owner.is_in_group(\"Death\") or area.is_in_group(\"Death\"):
-		get_tree().reload_current_scene()
+		$\"State Indicator/AnimationPlayer\".play(\"Death_Start\")
 
 func _on_hitbox_area_exited(area: Area2D) -> void:
 	if area != null and area.owner != null:
@@ -108,6 +121,8 @@ func _on_destroyable_checker_area_entered(area: Area2D) -> void:
 	if area.is_in_group(\"Destroyable\") and state == 0 and velocity.y > 1000:
 		area.get_parent().queue_free()
 		
+func reloadCurrentScene():
+	get_tree().reload_current_scene()
 "
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1jxqw"]
@@ -220,6 +235,61 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_3iwfv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_tkwlq")
+}],
+"loop": true,
+"name": &"Fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_hl5qd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_ek41f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_khis8")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_b88wv")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_pgbbb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_331ug")
+}],
+"loop": true,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("28_ny14h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_ibah8")
+}],
+"loop": true,
+"name": &"Right",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nvl01"]
 size = Vector2(106, 116)
 
@@ -232,6 +302,75 @@ corner_radius_top_right = 50
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ahtn"]
 bg_color = Color(0, 0, 0, 0.509804)
+
+[sub_resource type="Animation" id="Animation_tkwlq"]
+resource_name = "Death_End"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -0.0018963), Vector2(0, -0.0606815), Vector2(0, -0.4608), Vector2(0, -1.94181), Vector2(0, -5.92593), Vector2(0, -14.7456), Vector2(0, -31.8711), Vector2(0, -62.1379), Vector2(0, -111.974), Vector2(0, -189.63), Vector2(0, -305.4), Vector2(0, -471.859), Vector2(0, -704.082), Vector2(0, -1019.87), Vector2(0, -1440), Vector2(0, -1860.13), Vector2(0, -2175.92), Vector2(0, -2408.14), Vector2(0, -2574.6), Vector2(0, -2690.37), Vector2(0, -2768.03), Vector2(0, -2817.86), Vector2(0, -2848.13), Vector2(0, -2865.25), Vector2(0, -2874.07), Vector2(0, -2878.06), Vector2(0, -2879.54), Vector2(0, -2879.94), Vector2(0, -2880), Vector2(0, -2880)]
+}
+
+[sub_resource type="Animation" id="Animation_hl5qd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -2880)]
+}
+
+[sub_resource type="Animation" id="Animation_ek41f"]
+resource_name = "Death_Start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -2880), Vector2(0, -2880), Vector2(0, -2879.94), Vector2(0, -2879.54), Vector2(0, -2878.06), Vector2(0, -2874.07), Vector2(0, -2865.25), Vector2(0, -2848.13), Vector2(0, -2817.86), Vector2(0, -2768.03), Vector2(0, -2690.37), Vector2(0, -2574.6), Vector2(0, -2408.14), Vector2(0, -2175.92), Vector2(0, -1860.13), Vector2(0, -1440), Vector2(0, -1019.87), Vector2(0, -704.082), Vector2(0, -471.859), Vector2(0, -305.401), Vector2(0, -189.629), Vector2(0, -111.974), Vector2(0, -62.1377), Vector2(0, -31.8711), Vector2(0, -14.7456), Vector2(0, -5.92603), Vector2(0, -1.94189), Vector2(0, -0.460693), Vector2(0, -0.0605469), Vector2(0, -0.00195313), Vector2(0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reloadCurrentScene"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ek41f"]
+_data = {
+&"Death_End": SubResource("Animation_tkwlq"),
+&"Death_Start": SubResource("Animation_ek41f"),
+&"RESET": SubResource("Animation_hl5qd")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khis8"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 scale = Vector2(0.5, 0.5)
@@ -261,10 +400,11 @@ autoplay = "Idle"
 
 [node name="Gas" type="AnimatedSprite2D" parent="AnimationHandler"]
 visible = false
-self_modulate = Color(0, 1, 0, 1)
-sprite_frames = SubResource("SpriteFrames_1jxqw")
+scale = Vector2(0.9, 0.9)
+sprite_frames = SubResource("SpriteFrames_3iwfv")
 animation = &"Fall"
 autoplay = "Idle"
+frame_progress = 0.0690433
 
 [node name="Hitbox" type="Area2D" parent="."]
 
@@ -398,6 +538,20 @@ text = "Continue"
 
 [node name="ExitButton" parent="State Indicator/Pause/VBoxContainer" instance=ExtResource("23_dx0e4")]
 layout_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="State Indicator"]
+libraries = {
+&"": SubResource("AnimationLibrary_ek41f")
+}
+
+[node name="Transition" type="Panel" parent="State Indicator"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_khis8")
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]

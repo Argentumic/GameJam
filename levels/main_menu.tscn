@@ -1,12 +1,82 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfjx5wxg3hon"]
+[gd_scene load_steps=11 format=3 uid="uid://dfjx5wxg3hon"]
 
 [ext_resource type="Script" uid="uid://r7fvlmqqd5hm" path="res://scripts/main_menu.gd" id="1_duh7t"]
 [ext_resource type="PackedScene" uid="uid://c7yx0a5hrnp3h" path="res://UI/play_button.tscn" id="2_7rktv"]
 [ext_resource type="PackedScene" uid="uid://di68s2ubfqxmc" path="res://UI/volume.tscn" id="2_duh7t"]
 [ext_resource type="PackedScene" uid="uid://5f4x40668lp6" path="res://UI/exit_button.tscn" id="3_3ye4h"]
+[ext_resource type="AudioStream" uid="uid://wwks40vgq6e7" path="res://SFX/starting the game.mp3" id="5_3ye4h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spmat"]
 bg_color = Color(0.136826, 0.136826, 0.136826, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ye4h"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_3ye4h"]
+resource_name = "StartGame"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1, 1.03333, 1.06667, 1.1, 1.13333, 1.16667, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -1080), Vector2(0, -1080), Vector2(0, -1079.98), Vector2(0, -1079.83), Vector2(0, -1079.27), Vector2(0, -1077.78), Vector2(0, -1074.47), Vector2(0, -1068.05), Vector2(0, -1056.7), Vector2(0, -1038.01), Vector2(0, -1008.89), Vector2(0, -965.474), Vector2(0, -903.052), Vector2(0, -815.969), Vector2(0, -697.547), Vector2(0, -540), Vector2(0, -382.452), Vector2(0, -264.03), Vector2(0, -176.947), Vector2(0, -114.525), Vector2(0, -71.111), Vector2(0, -41.9904), Vector2(0, -23.3016), Vector2(0, -11.9517), Vector2(0, -5.52954), Vector2(0, -2.22217), Vector2(0, -0.728149), Vector2(0, -0.172729), Vector2(0, -0.0227051), Vector2(0, -0.000732422), Vector2(0, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_3ye4h")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"goto_level_one"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_nwbki"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -1080)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pppj1"]
+_data = {
+&"RESET": SubResource("Animation_nwbki"),
+&"StartGame": SubResource("Animation_3ye4h")
+}
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -56,6 +126,25 @@ offset_top = -255.0
 offset_right = -113.0
 offset_bottom = -33.0
 grow_horizontal = 2
+
+[node name="Transition" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1080.0
+offset_bottom = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3ye4h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pppj1")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

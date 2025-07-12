@@ -1,0 +1,110 @@
+[gd_scene load_steps=7 format=3 uid="uid://b6kn1opckwlcd"]
+
+[ext_resource type="AudioStream" uid="uid://wwks40vgq6e7" path="res://SFX/starting the game.mp3" id="1_083ue"]
+
+[sub_resource type="GDScript" id="GDScript_083ue"]
+script/source = "extends Control
+
+func playGameStart():
+	$AnimationPlayer.play(\"StratingGameTransition\")
+	
+func gotoLevelOne():
+	get_tree().change_scene_to_file(\"res://levels/Level1.tscn\")
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7rktv"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_7rktv"]
+resource_name = "StratingGameTransition"
+length = 2.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMenu")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"goto_level_one"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainMenu/TransitionHandler/Transition:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1.00004, 1.03338, 1.06671, 1.10004, 1.13338, 1.16671, 1.20004, 1.23338, 1.26671, 1.30004, 1.33338, 1.36671, 1.40004, 1.43338, 1.46671, 1.50004, 1.53338, 1.56671, 1.60004, 1.63338, 1.66671, 1.70004, 1.73338, 1.76671, 1.80004, 1.83338, 1.86671, 1.90004, 1.93338, 1.96671, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -1080), Vector2(0, -1080), Vector2(0, -1079.98), Vector2(0, -1079.83), Vector2(0, -1079.27), Vector2(0, -1077.78), Vector2(0, -1074.47), Vector2(0, -1068.05), Vector2(0, -1056.7), Vector2(0, -1038.02), Vector2(0, -1008.9), Vector2(0, -965.499), Vector2(0, -903.09), Vector2(0, -816.025), Vector2(0, -697.628), Vector2(0, -540.114), Vector2(0, -382.545), Vector2(0, -264.103), Vector2(0, -177.003), Vector2(0, -114.567), Vector2(0, -71.1411), Vector2(0, -42.0111), Vector2(0, -23.3152), Vector2(0, -11.96), Vector2(0, -5.5343), Vector2(0, -2.22449), Vector2(0, -0.729126), Vector2(0, -0.173096), Vector2(0, -0.0228271), Vector2(0, -0.000732422), Vector2(0, 0), Vector2(0, -0.000711261), Vector2(0, -0.0227604), Vector2(0, -0.172836), Vector2(0, -0.728332), Vector2(0, -2.22269), Vector2(0, -5.53077), Vector2(0, -11.9542), Vector2(0, -23.3066), Vector2(0, -41.9993), Vector2(0, -71.1261), Vector2(0, -114.549), Vector2(0, -176.985), Vector2(0, -264.086), Vector2(0, -382.533), Vector2(0, -540.114), Vector2(0, -697.64), Vector2(0, -816.042), Vector2(0, -903.109), Vector2(0, -965.517), Vector2(0, -1008.92), Vector2(0, -1038.03), Vector2(0, -1056.71), Vector2(0, -1068.06), Vector2(0, -1074.48), Vector2(0, -1077.78), Vector2(0, -1079.27), Vector2(0, -1079.83), Vector2(0, -1079.98), Vector2(0, -1080), Vector2(0, -1080)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainMenu/TransitionHandler/AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_083ue")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="Animation" id="Animation_3ye4h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMenu/TransitionHandler/Transition:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -1080)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nwbki"]
+_data = {
+&"RESET": SubResource("Animation_3ye4h"),
+&"StratingGameTransition": SubResource("Animation_7rktv")
+}
+
+[node name="TransitionHandler" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_083ue")
+
+[node name="Transition" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7rktv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_nwbki")
+}
+next/StratingGameTransition = &"StratingGameTransition"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"

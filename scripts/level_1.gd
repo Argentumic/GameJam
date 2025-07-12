@@ -1,6 +1,6 @@
 extends Node2D
 
-const LEVEL_MUSIC = preload("res://Summer game jam piece 1.mp3")
+const LEVEL_MUSIC = preload("res://Summer game jam piece two.mp3")
 
 func _enter_tree() -> void:
 	if Checkpoint.last_position:
