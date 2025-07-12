@@ -290,6 +290,22 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_pgbbb"]
+resource_name = "Comeback"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Solid:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.453786, 0.285699, 0.179811, 0.113106, 0.0710844, 0.0446125, 0.0279362, 0.0174308, 0.0108128, 0.00664371, 0.00401735, 0.00236286, 0.00132058, 0.000663995, 0.000250381, 0.0]
+}
+
 [sub_resource type="Animation" id="Animation_khis8"]
 resource_name = "Fall"
 length = 0.5
@@ -319,22 +335,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_pgbbb"]
-resource_name = "Comeback"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Solid:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.453786, 0.285699, 0.179811, 0.113106, 0.0710844, 0.0446125, 0.0279362, 0.0174308, 0.0108128, 0.00664371, 0.00401735, 0.00236286, 0.00132058, 0.000663995, 0.000250381, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pgbbb"]
