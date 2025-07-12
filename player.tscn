@@ -107,6 +107,7 @@ func _on_destroyable_checker_area_entered(area: Area2D) -> void:
 	print(velocity.y)
 	if area.is_in_group(\"Destroyable\") and state == 0 and velocity.y > 1000:
 		area.get_parent().queue_free()
+		
 "
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1jxqw"]
