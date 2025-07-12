@@ -22,6 +22,10 @@ func _physics_process(delta: float) -> void:
 	elif get_parent().velocity.y>=0 and !get_parent().is_on_floor():
 		get_parent().velocity += get_parent().get_gravity() * delta * gravity_coef * gravity_fall_coef
 		is_ascending = false
+	if get_parent().velocity.y>=0 and !get_parent().is_on_floor() and $"../AnimationHandler/Solid".visible:
+		$"../AnimationHandler/AnimationPlayer".play("Fall")
+	if get_parent().is_on_floor() and $"../AnimationHandler/Solid".rotation > 0:
+		$"../AnimationHandler/AnimationPlayer".play("Comeback")
 	#GRAVITY ENDS
 	#COYOTE TIME STARTS
 	
