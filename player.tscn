@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://6cecfsx70cfs"]
+[gd_scene load_steps=54 format=3 uid="uid://6cecfsx70cfs"]
 
 [ext_resource type="Texture2D" uid="uid://brpx2pabua53d" path="res://Solid Assets/Solid_Idle1.png" id="1_hqtel"]
 [ext_resource type="Texture2D" uid="uid://c17b5nck6syua" path="res://Solid Assets/Solid_Land.png" id="1_n7ghd"]
@@ -34,6 +34,8 @@
 [ext_resource type="Texture2D" uid="uid://qxd7xdif5r7q" path="res://Gas Assets/Gas_Left2.png" id="27_331ug"]
 [ext_resource type="Texture2D" uid="uid://bgi2wcheikssv" path="res://Gas Assets/Gas_Right1.png" id="28_ny14h"]
 [ext_resource type="Texture2D" uid="uid://bibwmygf621sb" path="res://Gas Assets/Gas_Right2.png" id="29_ibah8"]
+[ext_resource type="FontFile" uid="uid://cybdwjvjce2a8" path="res://ariblk.ttf" id="34_hl5qd"]
+[ext_resource type="AudioStream" uid="uid://d2coh011bpxc3" path="res://SFX/state shift.ogg" id="36_ek41f"]
 
 [sub_resource type="GDScript" id="GDScript_4flbx"]
 resource_name = "movement"
@@ -42,6 +44,7 @@ script/source = "extends CharacterBody2D
 
 @export var speed: float = 250.0
 var is_in_spikes: bool = false
+var wood_break_sfx = preload(\"res://SFX/wood break.ogg\")
 
 func _enter_tree() -> void:
 	$\"State Indicator/Transition\".set_position(Vector2(0,0))
@@ -64,11 +67,15 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed(\"ShiftStatesUp\") and state<3:
+		$stateshiftSFXplayer.pitch_scale = randf_range(0.75,1.25)
+		$stateshiftSFXplayer.play()
 		if state == 2:
 			state = 0
 		else:
 			state += 1
 	if Input.is_action_just_pressed(\"ShiftStatesDown\") and state<3:
+		$stateshiftSFXplayer.pitch_scale = randf_range(0.75,1.25)
+		$stateshiftSFXplayer.play()
 		if state == 0:
 			state = 2
 		else:
@@ -119,6 +126,9 @@ func _on_hitbox_area_exited(area: Area2D) -> void:
 func _on_destroyable_checker_area_entered(area: Area2D) -> void:
 	print(velocity.y)
 	if area.is_in_group(\"Destroyable\") and state == 0 and velocity.y > 1000:
+		$\"SFXplayer\".stream = wood_break_sfx
+		$\"SFXplayer\".pitch_scale = randf_range(0.9,1.1)
+		$\"SFXplayer\".play()
 		area.get_parent().queue_free()
 		
 func reloadCurrentScene():
@@ -593,10 +603,12 @@ pivot_offset = Vector2(589.48, 109)
 
 [node name="PlayButton" parent="State Indicator/Pause/VBoxContainer" instance=ExtResource("24_jm5j8")]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("34_hl5qd")
 text = "Continue"
 
 [node name="ExitButton" parent="State Indicator/Pause/VBoxContainer" instance=ExtResource("23_dx0e4")]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("34_hl5qd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="State Indicator"]
 libraries = {
@@ -611,6 +623,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_khis8")
+
+[node name="SFXplayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
+
+[node name="stateshiftSFXplayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("36_ek41f")
+bus = &"SFX"
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]

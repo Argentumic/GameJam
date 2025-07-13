@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://x4y8bfrd1g4u"
+path="res://.godot/imported/fan noise.ogg-48e01d95b4b4c6a6baffd7626f13e6bc.oggvorbisstr"
+
+[deps]
+
+source_file="res://SFX/fan noise.ogg"
+dest_files=["res://.godot/imported/fan noise.ogg-48e01d95b4b4c6a6baffd7626f13e6bc.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

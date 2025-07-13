@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://0tukjq8k2du2"
+path="res://.godot/imported/wood break.ogg-234f6e005da8269cc828caef31079717.oggvorbisstr"
+
+[deps]
+
+source_file="res://SFX/wood break.ogg"
+dest_files=["res://.godot/imported/wood break.ogg-234f6e005da8269cc828caef31079717.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

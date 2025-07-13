@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://di68s2ubfqxmc"]
+[gd_scene load_steps=9 format=3 uid="uid://di68s2ubfqxmc"]
 
+[ext_resource type="FontFile" uid="uid://cybdwjvjce2a8" path="res://ariblk.ttf" id="1_mi2yi"]
 [ext_resource type="Script" uid="uid://72id0a2b3q7t" path="res://scripts/VolumeSlider.gd" id="1_rk3jm"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_spmat"]
@@ -32,6 +33,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer2"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("1_mi2yi")
 theme_override_font_sizes/font_size = 24
 text = "Music"
 
@@ -54,6 +56,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("1_mi2yi")
 theme_override_font_sizes/font_size = 24
 text = "Sound Effects"
 

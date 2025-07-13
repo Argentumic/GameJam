@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dfjx5wxg3hon"]
+[gd_scene load_steps=12 format=3 uid="uid://dfjx5wxg3hon"]
 
 [ext_resource type="Script" uid="uid://r7fvlmqqd5hm" path="res://scripts/main_menu.gd" id="1_duh7t"]
 [ext_resource type="PackedScene" uid="uid://c7yx0a5hrnp3h" path="res://UI/play_button.tscn" id="2_7rktv"]
 [ext_resource type="PackedScene" uid="uid://di68s2ubfqxmc" path="res://UI/volume.tscn" id="2_duh7t"]
 [ext_resource type="PackedScene" uid="uid://5f4x40668lp6" path="res://UI/exit_button.tscn" id="3_3ye4h"]
-[ext_resource type="AudioStream" uid="uid://wwks40vgq6e7" path="res://SFX/starting the game.mp3" id="5_3ye4h"]
+[ext_resource type="FontFile" uid="uid://cybdwjvjce2a8" path="res://ariblk.ttf" id="3_nwbki"]
+[ext_resource type="AudioStream" uid="uid://qhws2uf682fu" path="res://SFX/starting the game short.mp3" id="5_3ye4h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spmat"]
 bg_color = Color(0.136826, 0.136826, 0.136826, 1)
@@ -29,7 +30,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_3ye4h"]
 resource_name = "StartGame"
-length = 1.2
+length = 2.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -64,7 +65,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1.2),
+"times": PackedFloat32Array(2.5),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -110,9 +111,11 @@ theme_override_constants/separation = 24
 
 [node name="PlayButton" parent="VBoxContainer" instance=ExtResource("2_7rktv")]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_nwbki")
 
 [node name="ExitButton" parent="VBoxContainer" instance=ExtResource("3_3ye4h")]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_nwbki")
 
 [node name="VBoxContainer2" parent="." instance=ExtResource("2_duh7t")]
 layout_mode = 1

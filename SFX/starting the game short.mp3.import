@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://qhws2uf682fu"
+path="res://.godot/imported/starting the game short.mp3-98dbb6b04cfe8a4ed61f412561ca6e7b.mp3str"
+
+[deps]
+
+source_file="res://SFX/starting the game short.mp3"
+dest_files=["res://.godot/imported/starting the game short.mp3-98dbb6b04cfe8a4ed61f412561ca6e7b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
