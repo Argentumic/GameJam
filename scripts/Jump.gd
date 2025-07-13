@@ -6,6 +6,7 @@ extends Node
 @export var jump_cut_coef: float = 0.5
 
 var is_ascending: bool = false
+var is_cutted: bool = false
 
 const COYOTE_TIMER_MAX: int = 6
 var coyote_timer: int = 0
@@ -39,9 +40,11 @@ func _physics_process(delta: float) -> void:
 	
 	if (get_parent().is_on_floor() or coyote_timer > 0) and Input.is_action_just_pressed("Jump"):
 		get_parent().velocity.y = JUMP_VELOCITY
+		is_cutted = false
 	
-	if Input.is_action_just_released("Jump") and !get_parent().is_on_floor():
+	if Input.is_action_just_released("Jump") and !get_parent().is_on_floor() and !is_cutted:
 		get_parent().velocity.y *= jump_cut_coef
+		is_cutted = true
 			
 	#MAIN JUMP PART ENDS
 	#BUFFER TIME PART BELOW
