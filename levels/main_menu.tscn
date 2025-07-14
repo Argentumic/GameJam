@@ -1,14 +1,77 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfjx5wxg3hon"]
+[gd_scene load_steps=17 format=3 uid="uid://dfjx5wxg3hon"]
 
 [ext_resource type="Script" uid="uid://r7fvlmqqd5hm" path="res://scripts/main_menu.gd" id="1_duh7t"]
+[ext_resource type="Texture2D" uid="uid://b3a5xf0gstgxc" path="res://LevelRes/Background1.png" id="2_6flho"]
 [ext_resource type="PackedScene" uid="uid://c7yx0a5hrnp3h" path="res://UI/play_button.tscn" id="2_7rktv"]
 [ext_resource type="PackedScene" uid="uid://di68s2ubfqxmc" path="res://UI/volume.tscn" id="2_duh7t"]
 [ext_resource type="PackedScene" uid="uid://5f4x40668lp6" path="res://UI/exit_button.tscn" id="3_3ye4h"]
 [ext_resource type="FontFile" uid="uid://cybdwjvjce2a8" path="res://ariblk.ttf" id="3_nwbki"]
 [ext_resource type="AudioStream" uid="uid://qhws2uf682fu" path="res://SFX/starting the game short.mp3" id="5_3ye4h"]
+[ext_resource type="Texture2D" uid="uid://bpied53pqlym2" path="res://title.png" id="7_pppj1"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spmat"]
-bg_color = Color(0.136826, 0.136826, 0.136826, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ofye2"]
+texture = ExtResource("2_6flho")
+
+[sub_resource type="Animation" id="Animation_pppj1"]
+resource_name = "new_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(755, 599), Vector2(755.117, 599.092), Vector2(754.774, 598.821), Vector2(754.586, 598.672), Vector2(757.031, 600.609), Vector2(754.694, 598.758), Vector2(742.549, 589.133), Vector2(774.938, 614.8), Vector2(841.062, 667.2), Vector2(873.451, 692.867), Vector2(861.306, 683.242), Vector2(858.969, 681.391), Vector2(861.414, 683.328), Vector2(861.226, 683.179), Vector2(860.883, 682.908), Vector2(861, 683), Vector2(860.883, 682.908), Vector2(861.226, 683.179), Vector2(861.414, 683.328), Vector2(858.969, 681.391), Vector2(861.306, 683.242), Vector2(873.451, 692.867), Vector2(841.062, 667.2), Vector2(774.938, 614.8), Vector2(742.549, 589.133), Vector2(754.694, 598.758), Vector2(757.031, 600.609), Vector2(754.586, 598.672), Vector2(754.774, 598.821), Vector2(755.117, 599.092), Vector2(755, 599)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1165, 481), Vector2(1164.88, 480.908), Vector2(1165.23, 481.179), Vector2(1165.41, 481.328), Vector2(1162.97, 479.391), Vector2(1165.31, 481.242), Vector2(1177.45, 490.867), Vector2(1145.06, 465.2), Vector2(1078.94, 412.8), Vector2(1046.55, 387.133), Vector2(1058.69, 396.758), Vector2(1061.03, 398.609), Vector2(1058.59, 396.672), Vector2(1058.77, 396.821), Vector2(1059.12, 397.092), Vector2(1059, 397), Vector2(1059.12, 397.092), Vector2(1058.77, 396.821), Vector2(1058.59, 396.672), Vector2(1061.03, 398.609), Vector2(1058.69, 396.758), Vector2(1046.55, 387.133), Vector2(1078.94, 412.8), Vector2(1145.06, 465.2), Vector2(1177.45, 490.867), Vector2(1165.31, 481.242), Vector2(1162.97, 479.391), Vector2(1165.41, 481.328), Vector2(1165.23, 481.179), Vector2(1164.88, 480.908), Vector2(1165, 481)]
+}
+
+[sub_resource type="Animation" id="Animation_6flho"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(755, 599)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1059, 397)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ofye2"]
+_data = {
+&"RESET": SubResource("Animation_6flho"),
+&"new_animation": SubResource("Animation_pppj1")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ye4h"]
 bg_color = Color(0, 0, 0, 1)
@@ -95,7 +158,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_spmat")
+theme_override_styles/panel = SubResource("StyleBoxTexture_ofye2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -103,19 +166,21 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 24.0
-offset_top = -262.0
-offset_right = 424.0
-offset_bottom = -24.0
+offset_top = -1057.0
+offset_right = 634.0
+offset_bottom = -684.0
 grow_vertical = 0
 theme_override_constants/separation = 24
 
 [node name="PlayButton" parent="VBoxContainer" instance=ExtResource("2_7rktv")]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_nwbki")
+theme_override_font_sizes/font_size = 120
 
 [node name="ExitButton" parent="VBoxContainer" instance=ExtResource("3_3ye4h")]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_nwbki")
+theme_override_font_sizes/font_size = 120
 
 [node name="VBoxContainer2" parent="." instance=ExtResource("2_duh7t")]
 layout_mode = 1
@@ -124,11 +189,33 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -512.0
-offset_top = -255.0
-offset_right = -113.0
-offset_bottom = -33.0
+offset_left = -932.0
+offset_top = -675.0
+offset_right = -326.0
+offset_bottom = -336.0
 grow_horizontal = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -861.0
+offset_top = -683.0
+offset_right = -106.0
+offset_bottom = -84.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("7_pppj1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect"]
+libraries = {
+&"": SubResource("AnimationLibrary_ofye2")
+}
+autoplay = "new_animation"
+speed_scale = 0.815
 
 [node name="Transition" type="Panel" parent="."]
 layout_mode = 1

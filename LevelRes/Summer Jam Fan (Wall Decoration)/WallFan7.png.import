@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2mrcjwht785d"
-path="res://.godot/imported/breakablePlat.png-6e004c29d1e11acc6faeb8735a2aacb5.ctex"
+uid="uid://dyc1snfaebe57"
+path="res://.godot/imported/WallFan7.png-f71455ab95b201650b7ab69305555b62.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://breakablePlat.png"
-dest_files=["res://.godot/imported/breakablePlat.png-6e004c29d1e11acc6faeb8735a2aacb5.ctex"]
+source_file="res://LevelRes/Summer Jam Fan (Wall Decoration)/WallFan7.png"
+dest_files=["res://.godot/imported/WallFan7.png-f71455ab95b201650b7ab69305555b62.ctex"]
 
 [params]
 

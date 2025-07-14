@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cgbd7jkvumw2r"]
 
 [ext_resource type="Script" uid="uid://cqapsm5jx3guq" path="res://scripts/mesh.gd" id="1_11kbe"]
-[ext_resource type="Texture2D" uid="uid://cxeriqirvcgkw" path="res://mesh.png" id="2_11kbe"]
+[ext_resource type="Texture2D" uid="uid://dgtg7ijo1o0p7" path="res://LevelRes/Tile_Grate.png" id="2_11kbe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6fb1t"]
 size = Vector2(100, 100)
@@ -16,6 +16,7 @@ script = ExtResource("1_11kbe")
 shape = SubResource("RectangleShape2D_6fb1t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_11kbe")
 
 [node name="Area2D" type="Area2D" parent="."]

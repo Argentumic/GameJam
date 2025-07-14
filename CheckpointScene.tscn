@@ -1,8 +1,58 @@
-[gd_scene load_steps=3 format=3 uid="uid://budvnxorxcbv2"]
+[gd_scene load_steps=12 format=3 uid="uid://budvnxorxcbv2"]
 
 [ext_resource type="Script" uid="uid://b0hvsxr4utdo5" path="res://scripts/CheckpointScene.gd" id="1_g5a7n"]
+[ext_resource type="Texture2D" uid="uid://b2bv8gjc0ignk" path="res://LevelRes/Summer Jam Flag/Flag_Activate1.png" id="2_cfmgv"]
+[ext_resource type="Texture2D" uid="uid://b46ujb2jqfk5r" path="res://LevelRes/Summer Jam Flag/Flag_Activate2.png" id="3_ewfyd"]
+[ext_resource type="Texture2D" uid="uid://clk7bdn6d0gsc" path="res://LevelRes/Summer Jam Flag/Flag_Activate3.png" id="4_2j2a0"]
+[ext_resource type="Texture2D" uid="uid://b56y7txf04cr0" path="res://LevelRes/Summer Jam Flag/Flag_Inactive.png" id="5_7utkc"]
+[ext_resource type="Texture2D" uid="uid://lh5rno3nec8n" path="res://LevelRes/Summer Jam Flag/Flag_Active1.png" id="5_d31xu"]
+[ext_resource type="Texture2D" uid="uid://daau4pbeyy1i6" path="res://LevelRes/Summer Jam Flag/Flag_Active2.png" id="6_lcvn6"]
+[ext_resource type="Texture2D" uid="uid://2im2evsq1fh2" path="res://LevelRes/Summer Jam Flag/Flag_Active3.png" id="7_hoduo"]
+[ext_resource type="Texture2D" uid="uid://bgr0s4eunwwh3" path="res://LevelRes/Summer Jam Flag/Flag_Active4.png" id="8_2v8dr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jcb5q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d31xu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cfmgv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ewfyd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2j2a0")
+}],
+"loop": false,
+"name": &"activate",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_d31xu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_lcvn6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_hoduo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2v8dr")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_7utkc")
+}],
+"loop": true,
+"name": &"inactive",
+"speed": 5.0
+}]
 
 [node name="CheckpointScene" type="Node2D"]
 
@@ -13,5 +63,12 @@ script = ExtResource("1_g5a7n")
 scale = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_jcb5q")
 debug_color = Color(1.63645e-06, 0.647408, 0.211874, 0.42)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_d31xu")
+animation = &"inactive"
+autoplay = "inactive"
+offset = Vector2(0, 30)
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

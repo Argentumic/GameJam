@@ -10,15 +10,15 @@
 [sub_resource type="CanvasTexture" id="CanvasTexture_duh7t"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_spmat"]
-thickness = 24
+thickness = 48
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_0ettg"]
 color = Color(1, 1, 1, 1)
-thickness = 24
+thickness = 48
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_duh7t"]
 color = Color(1, 1, 1, 1)
-thickness = 24
+thickness = 48
 
 [node name="VBoxContainer2" type="VBoxContainer"]
 offset_left = 447.0
@@ -33,8 +33,9 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer2"]
 layout_mode = 2
+theme_override_constants/outline_size = 13
 theme_override_fonts/font = ExtResource("1_mi2yi")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 48
 text = "Music"
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer2"]
@@ -56,8 +57,9 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_constants/outline_size = 13
 theme_override_fonts/font = ExtResource("1_mi2yi")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 48
 text = "Sound Effects"
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer"]

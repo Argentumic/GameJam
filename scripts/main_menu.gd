@@ -1,13 +1,15 @@
 extends Control
 
 
-const LEVEL_MUSIC = preload("res://Summer game jam piece two.mp3")
+const LEVEL_MUSIC = preload("res://Summer game jam piece one.mp3")
 
 func _ready() -> void:
 	AudioPlayer.play_music(LEVEL_MUSIC)
 
 
 func _on_play_button_pressed() -> void:
+	AudioPlayer.stop()
+	$TextureRect/AnimationPlayer.stop()
 	$AnimationPlayer.play("StartGame")
 	
 

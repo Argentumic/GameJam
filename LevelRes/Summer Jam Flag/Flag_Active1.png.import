@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpxya7hui0vo4"
-path="res://.godot/imported/spike.png-e37a9e25d1ba0bf6bc0a95cc2494b5c5.ctex"
+uid="uid://lh5rno3nec8n"
+path="res://.godot/imported/Flag_Active1.png-ae56e3ab8e80a4ac220d619899768ee1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://spike.png"
-dest_files=["res://.godot/imported/spike.png-e37a9e25d1ba0bf6bc0a95cc2494b5c5.ctex"]
+source_file="res://LevelRes/Summer Jam Flag/Flag_Active1.png"
+dest_files=["res://.godot/imported/Flag_Active1.png-ae56e3ab8e80a4ac220d619899768ee1.ctex"]
 
 [params]
 

@@ -1,0 +1,50 @@
+[gd_scene load_steps=10 format=3 uid="uid://bb4qieymhvlvm"]
+
+[ext_resource type="Texture2D" uid="uid://c7l4uypxf4o2k" path="res://LevelRes/Summer Jam Fan (Wall Decoration)/WallFan1.png" id="1_5y3xy"]
+[ext_resource type="Texture2D" uid="uid://dkcqy6syoifh4" path="res://LevelRes/Summer Jam Fan (Wall Decoration)/WallFan2.png" id="2_5bp87"]
+[ext_resource type="Texture2D" uid="uid://dt4802bvobscx" path="res://LevelRes/Summer Jam Fan (Wall Decoration)/WallFan3.png" id="3_0u60r"]
+[ext_resource type="Texture2D" uid="uid://cwfeny1pwk1ol" path="res://LevelRes/Summer Jam Fan (Wall Decoration)/WallFan4.png" id="4_yxqxk"]
+[ext_resource type="Texture2D" uid="uid://dc1u27jw8y816" path="res://LevelRes/Summer Jam Fan (Wall Decoration)/WallFan5.png" id="5_bgmdi"]
+[ext_resource type="Texture2D" uid="uid://c8dyc2twhl22j" path="res://LevelRes/Summer Jam Fan (Wall Decoration)/WallFan6.png" id="6_dd0ou"]
+[ext_resource type="Texture2D" uid="uid://dyc1snfaebe57" path="res://LevelRes/Summer Jam Fan (Wall Decoration)/WallFan7.png" id="7_itswg"]
+[ext_resource type="Texture2D" uid="uid://cek0aku1wl7ev" path="res://LevelRes/Summer Jam Fan (Wall Decoration)/WallFan8.png" id="8_yrsvx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yblw4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5y3xy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_5bp87")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0u60r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_yxqxk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bgmdi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dd0ou")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_itswg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_yrsvx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="WallFan" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.33, 0.33)
+sprite_frames = SubResource("SpriteFrames_yblw4")
+autoplay = "default"
+frame_progress = 0.378337

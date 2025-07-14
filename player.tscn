@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://6cecfsx70cfs"]
+[gd_scene load_steps=60 format=3 uid="uid://6cecfsx70cfs"]
 
 [ext_resource type="Texture2D" uid="uid://brpx2pabua53d" path="res://Solid Assets/Solid_Idle1.png" id="1_hqtel"]
 [ext_resource type="Texture2D" uid="uid://c17b5nck6syua" path="res://Solid Assets/Solid_Land.png" id="1_n7ghd"]
@@ -37,6 +37,9 @@
 [ext_resource type="FontFile" uid="uid://cybdwjvjce2a8" path="res://ariblk.ttf" id="34_hl5qd"]
 [ext_resource type="AudioStream" uid="uid://d2coh011bpxc3" path="res://SFX/state shift.ogg" id="36_ek41f"]
 [ext_resource type="Script" uid="uid://bcgvvsnoguyci" path="res://speedrun_timer.gd" id="36_khis8"]
+[ext_resource type="Texture2D" uid="uid://b3a5xf0gstgxc" path="res://LevelRes/Background1.png" id="38_331ug"]
+[ext_resource type="Texture2D" uid="uid://dlxownfk4ndob" path="res://LevelRes/Background2.png" id="39_ny14h"]
+[ext_resource type="Texture2D" uid="uid://djft5y4vhlpa7" path="res://LevelRes/Background3.png" id="40_ibah8"]
 
 [sub_resource type="GDScript" id="GDScript_4flbx"]
 resource_name = "movement"
@@ -112,6 +115,8 @@ func _process(delta: float) -> void:
 	if is_in_spikes and state == 0:
 		$\"State Indicator/AnimationPlayer\".play(\"Death_Start\")
 
+func changeScene():
+	get_tree().change_scene_to_file(\"res://levels/end.tscn\")
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.owner.is_in_group(\"Spike\") or area.is_in_group(\"Spike\"):
@@ -427,11 +432,41 @@ tracks/0/keys = {
 "values": [Vector2(0, -2880)]
 }
 
+[sub_resource type="Animation" id="Animation_331ug"]
+resource_name = "transition_Start_2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -2880), Vector2(0, -2880), Vector2(0, -2879.94), Vector2(0, -2879.54), Vector2(0, -2878.06), Vector2(0, -2874.07), Vector2(0, -2865.25), Vector2(0, -2848.13), Vector2(0, -2817.86), Vector2(0, -2768.03), Vector2(0, -2690.37), Vector2(0, -2574.6), Vector2(0, -2408.14), Vector2(0, -2175.92), Vector2(0, -1860.13), Vector2(0, -1440), Vector2(0, -1019.87), Vector2(0, -704.082), Vector2(0, -471.859), Vector2(0, -305.401), Vector2(0, -189.629), Vector2(0, -111.974), Vector2(0, -62.1377), Vector2(0, -31.8711), Vector2(0, -14.7456), Vector2(0, -5.92603), Vector2(0, -1.94189), Vector2(0, -0.460693), Vector2(0, -0.0605469), Vector2(0, -0.00195313), Vector2(0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"changeScene"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ek41f"]
 _data = {
 &"Death_End": SubResource("Animation_tkwlq"),
 &"Death_Start": SubResource("Animation_ek41f"),
-&"RESET": SubResource("Animation_hl5qd")
+&"RESET": SubResource("Animation_hl5qd"),
+&"transition_Start_2": SubResource("Animation_331ug")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khis8"]
@@ -443,6 +478,36 @@ bg_color = Color(0.14902, 0.14902, 0.14902, 1)
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 scale = Vector2(0.5, 0.5)
 script = SubResource("GDScript_4flbx")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+offset = Vector2(960, 541.285)
+transform = Transform2D(1, 0, 0, 1, 960, 541.285)
+scroll_base_scale = Vector2(0.5, 0.5)
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+z_index = -10
+texture = ExtResource("38_331ug")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.05)
+motion_mirroring = Vector2(3840, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+z_index = 13
+position = Vector2(0, 300)
+texture = ExtResource("40_ibah8")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.2, 0)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+z_index = 13
+texture = ExtResource("39_ny14h")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-2, 4)
@@ -580,14 +645,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -199.5
-offset_top = -111.0
-offset_right = 199.5
-offset_bottom = 111.0
+offset_left = 48.0
+offset_top = -210.0
+offset_right = 710.0
+offset_bottom = 206.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2, 2)
 pivot_offset = Vector2(-224, 112.5)
+theme_override_constants/separation = 117
 
 [node name="VBoxContainer" type="VBoxContainer" parent="State Indicator/Pause"]
 layout_mode = 1
