@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dh6g2lmi7hh7u"]
 
-[ext_resource type="Texture2D" uid="uid://2mrcjwht785d" path="res://breakablePlat.png" id="1_50jd8"]
+[ext_resource type="Texture2D" uid="uid://cy7j30agdo654" path="res://Tile_BreakablePlatform.png" id="1_50jd8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gppvh"]
 size = Vector2(200, 100)
@@ -17,6 +17,7 @@ one_way_collision = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-50, 0)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_50jd8")
 centered = false
 

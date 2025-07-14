@@ -24,6 +24,7 @@ buses/default_bus_layout="res://scripts/default_bus_layout.tres"
 
 AudioPlayer="*res://AudioPlayer.tscn"
 Checkpoint="*res://scripts/checkpoint.gd"
+SpeedruntTimerGlobal="*res://SpeedruntTimerGlobal.gd"
 
 [display]
 
