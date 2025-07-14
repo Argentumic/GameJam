@@ -55,6 +55,7 @@ animations = [{
 }]
 
 [node name="CheckpointScene" type="Node2D"]
+z_index = -3
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource("1_g5a7n")
@@ -67,7 +68,7 @@ debug_color = Color(1.63645e-06, 0.647408, 0.211874, 0.42)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_d31xu")
-animation = &"inactive"
+animation = &"active"
 autoplay = "inactive"
 offset = Vector2(0, 30)
 

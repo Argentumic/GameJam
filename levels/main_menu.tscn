@@ -1,16 +1,51 @@
-[gd_scene load_steps=17 format=3 uid="uid://dfjx5wxg3hon"]
+[gd_scene load_steps=21 format=3 uid="uid://dfjx5wxg3hon"]
 
 [ext_resource type="Script" uid="uid://r7fvlmqqd5hm" path="res://scripts/main_menu.gd" id="1_duh7t"]
 [ext_resource type="Texture2D" uid="uid://b3a5xf0gstgxc" path="res://LevelRes/Background1.png" id="2_6flho"]
 [ext_resource type="PackedScene" uid="uid://c7yx0a5hrnp3h" path="res://UI/play_button.tscn" id="2_7rktv"]
 [ext_resource type="PackedScene" uid="uid://di68s2ubfqxmc" path="res://UI/volume.tscn" id="2_duh7t"]
 [ext_resource type="PackedScene" uid="uid://5f4x40668lp6" path="res://UI/exit_button.tscn" id="3_3ye4h"]
+[ext_resource type="Texture2D" uid="uid://dlxownfk4ndob" path="res://LevelRes/Background2.png" id="3_7ty7c"]
 [ext_resource type="FontFile" uid="uid://cybdwjvjce2a8" path="res://ariblk.ttf" id="3_nwbki"]
+[ext_resource type="Texture2D" uid="uid://djft5y4vhlpa7" path="res://LevelRes/Background3.png" id="4_lppu5"]
 [ext_resource type="AudioStream" uid="uid://qhws2uf682fu" path="res://SFX/starting the game short.mp3" id="5_3ye4h"]
 [ext_resource type="Texture2D" uid="uid://bpied53pqlym2" path="res://title.png" id="7_pppj1"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ofye2"]
 texture = ExtResource("2_6flho")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6xkr4"]
+texture = ExtResource("3_7ty7c")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b8wrl"]
+texture = ExtResource("4_lppu5")
+
+[sub_resource type="Animation" id="Animation_6flho"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(755, 599)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1059, 397)]
+}
 
 [sub_resource type="Animation" id="Animation_pppj1"]
 resource_name = "new_animation"
@@ -38,33 +73,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(1165, 481), Vector2(1164.88, 480.908), Vector2(1165.23, 481.179), Vector2(1165.41, 481.328), Vector2(1162.97, 479.391), Vector2(1165.31, 481.242), Vector2(1177.45, 490.867), Vector2(1145.06, 465.2), Vector2(1078.94, 412.8), Vector2(1046.55, 387.133), Vector2(1058.69, 396.758), Vector2(1061.03, 398.609), Vector2(1058.59, 396.672), Vector2(1058.77, 396.821), Vector2(1059.12, 397.092), Vector2(1059, 397), Vector2(1059.12, 397.092), Vector2(1058.77, 396.821), Vector2(1058.59, 396.672), Vector2(1061.03, 398.609), Vector2(1058.69, 396.758), Vector2(1046.55, 387.133), Vector2(1078.94, 412.8), Vector2(1145.06, 465.2), Vector2(1177.45, 490.867), Vector2(1165.31, 481.242), Vector2(1162.97, 479.391), Vector2(1165.41, 481.328), Vector2(1165.23, 481.179), Vector2(1164.88, 480.908), Vector2(1165, 481)]
-}
-
-[sub_resource type="Animation" id="Animation_6flho"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(755, 599)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1059, 397)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ofye2"]
@@ -152,6 +160,7 @@ grow_vertical = 2
 script = ExtResource("1_duh7t")
 
 [node name="Panel" type="Panel" parent="."]
+z_index = -4
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -159,6 +168,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_ofye2")
+
+[node name="Panel2" type="Panel" parent="."]
+z_index = -3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -36.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_6xkr4")
+
+[node name="Panel3" type="Panel" parent="."]
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 114.0
+offset_bottom = 114.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_b8wrl")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
